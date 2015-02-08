@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+# Enable virtual host
+echo "NameVirtualHost *:80" >> /etc/httpd/conf/httpd.conf
+
+# Set timezone in php.ini
+sed -i 's/;date.timezone =/date.timezone = "Europe\/London"/g' /etc/php.ini
+
+# Set memory_limit in php.ini
+sed -i 's/memory_limit = 128M/memory_limit = 512M/g' /etc/php.ini
+
+# Start Apache in foreground
+/usr/sbin/apachectl -DFOREGROUND
