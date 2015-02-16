@@ -1,6 +1,6 @@
 1. Clone the git repo
  
-2. Build containers \n
+2. Build containers 
 
    ```
    # cd docker/mysql
@@ -16,7 +16,7 @@
    # docker build -t geek876/redis .
 
    ```
-3. First Start MySQL Container \n
+3. First Start MySQL Container 
 
    ```
    # docker run -P -d --name mysql geek876/mysql (this will start with an empty mysql instance)
