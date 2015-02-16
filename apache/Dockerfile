@@ -11,20 +11,19 @@ RUN cd /usr/local/src \
     tar xvfz ioncube_loaders_lin_x86-64.tar.gz \ 
     PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION.'.'.PHP_MINOR_VERSION;") \
     sudo cp "ioncube/ioncube_loader_lin_${PHP_VERSION}.so" /usr/lib64/php5/modules/
-RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 \
-    \curl -sSL https://get.rvm.io | bash -s stable \
-	source /etc/profile \
-	rvm install 2.2.0 \
-	gem install mailcatcher --no-ri --no-rdoc
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 
+RUN \curl -sSL https://get.rvm.io | bash -s stable
+RUN /bin/bash -l -c "rvm install 2.2.0"
+RUN /bin/bash -l -c "gem install mailcatcher --no-ri --no-rdoc"
 ADD ./oracle-instantclient-basic-10.2.0.5-1.x86_64.rpm /tmp/oracle-instantclient-basic-10.2.0.5-1.x86_64.rpm
 ADD ./oracle-instantclient-devel-10.2.0.5-1.x86_64.rpm /tmp/oracle-instantclient-devel-10.2.0.5-1.x86_64.rpm
 RUN yum install -y /tmp/oracle-instantclient-basic-10.2.0.5-1.x86_64.rpm
 RUN yum install -y /tmp/oracle-instantclient-devel-10.2.0.5-1.x86_64.rpm
 RUN printf "\n" | pecl install oci8
 RUN echo 'extension=oci8.so' >> /etc/php.ini
-RUN gem install mailcatcher
 EXPOSE 80
 EXPOSE 1080
+EXPOSE 1025
 ADD start /start
 RUN chmod 755 /start
 CMD ["/start"]

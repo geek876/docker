@@ -11,7 +11,7 @@ sed -i 's/;date.timezone =/date.timezone = "Europe\/London"/g' /etc/php.ini
 sed -i 's/memory_limit = 128M/memory_limit = 512M/g' /etc/php.ini
 
 # Start MailCatcher
-mailcatcher
+/bin/bash -l -c "mailcatcher"
 
 # Start Apache in foreground
 /usr/sbin/apachectl -DFOREGROUND
