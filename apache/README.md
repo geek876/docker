@@ -1,11 +1,11 @@
 PHP/Apache with Magento Dependencies
 To start a new vhost
 ```
-docker run -d -P --name vhost -v /path/to/vhost.conf:/etc/httpd/conf.d/vhost.conf -v /path/to/docroot:/var/www/html docker/image:tag 
+docker run -d -P --name vhost --link mysql:db --link redis:redis -v /path/to/vhost.conf:/etc/httpd/conf.d/vhost.conf -v /path/to/docroot:/var/www/html docker/image:tag 
 ```
 ex:
 ```
-docker run -d -P --name testvhost -v testvhost.conf:/etc/httpd/conf.d/testvhost.conf -v testvhost_docroot:/var/www/html geek876/apache
+docker run -d -P --name testvhost --lisk mysql:db --link redis:redis -v testvhost.conf:/etc/httpd/conf.d/testvhost.conf -v testvhost_docroot:/var/www/html geek876/apache
 ```
 Now check which local port does the testvhost container's port 80 map to (it is 49165 here )
 ```
@@ -19,6 +19,6 @@ http://localhost:49165
 ```
 OR
 ```
-http://www.testvhost.conf:49163
+http://www.testvhost.conf:49165
 ```
 

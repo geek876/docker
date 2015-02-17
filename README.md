@@ -33,6 +33,6 @@
 5. Finally start Apache (Application Container)
 
    ```
-   # docker run -P -d --name apache -link mysql:mysql -link redis:redis geek876/apache
+   # docker run -P -d --name apache --link mysql:mysql --link redis:redis geek876/apache
 
    ```
